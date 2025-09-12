@@ -1,0 +1,1000 @@
+                 1.  Functional Interface
+
+
+        a. A Functional Interface is an interface that contains only one abstract method(Incomplete method).
+        b. It is also known as SAM Interface(Single Abstract Method)
+        c. A Functional Interface can have any number of default and static method.
+        Exam: Runnable, Camparable, ActionListener
+        d. Lambda Expressions can be used and executted by representing the interface with an annotation called @FunctionalInterface.
+        e. @Functional Interface annotation is used to ensure that the functional interface can not more than one abstract method.
+        Ex: 1
+        @FunctionalInterface
+       public interface A {
+           public void test();
+       }
+
+       Ex:2
+       @FunctionalInterface
+       public interface A {
+           public void test();
+           public void test1();
+       }//error
+
+
+### MCQ on Functional Interfaces:
+
+1. **What is a functional interface in Java?**
+   a) An interface with exactly one abstract method.
+   b) An interface with multiple abstract methods.
+   c) An interface with no methods.
+   d) An interface with only static methods.
+   **Answer**: a
+
+2. **Which of the following is NOT true about functional interfaces?**
+   a) They can have multiple default methods.
+   b) They can have multiple static methods.
+   c) They can have more than one abstract method.
+   d) They can be annotated with `@FunctionalInterface`.
+   **Answer**: c
+
+3. **Which of the following is an example of a functional interface?**
+   a) `Comparable`
+   b) `Runnable`
+   c) `ActionListener`
+   d) All of the above
+   **Answer**: d
+
+4. **What happens if a functional interface annotated with `@FunctionalInterface` has more than one abstract method?**
+   a) It compiles successfully.
+   b) A runtime exception occurs.
+   c) A compile-time error is thrown.
+   d) It behaves like a normal interface.
+   **Answer**: c
+
+5. **Which feature in Java is closely associated with functional interfaces?**
+   a) Polymorphism
+   b) Inheritance
+   c) Lambda expressions
+   d) Annotations
+   **Answer**: c
+
+6. **Identify the error in the following functional interface:**
+   ```java
+   @FunctionalInterface
+   public interface Example {
+       void method1();
+       void method2(); // Another abstract method
+   }
+   ```
+   a) No error
+   b) Compile-time error: Too many abstract methods
+   c) Syntax error: Missing implementation
+   d) Runtime error
+   **Answer**: b
+
+7. **Which annotation is used to enforce that an interface is functional?**
+   a) `@Override`
+   b) `@FunctionalInterface`
+   c) `@Functional`
+   d) `@Interface`
+   **Answer**: b
+
+8. **Given the interface `@FunctionalInterface public interface Test { void run(); }`, which of the following correctly implements it using a lambda expression?**
+   a) `Test t = () -> { return 42; };`
+   b) `Test t = (x) -> { System.out.println(x); };`
+   c) `Test t = () -> System.out.println("Running");`
+   d) `Test t = (int x, int y) -> x + y;`
+   **Answer**: c
+
+9. **Can a functional interface extend another interface?**
+   a) Yes, if the parent interface has exactly one abstract method.
+   b) No, functional interfaces cannot extend other interfaces.
+   c) Yes, functional interfaces can extend any interface regardless of its methods.
+   d) Yes, if it does not define any additional abstract methods.
+   **Answer**: d
+
+10. **Which of the following interfaces is a functional interface from Java's standard library?**
+    a) `List`
+    b) `Predicate`
+    c) `Map`
+    d) `Serializable`
+    **Answer**: b
+
+
+
+                 2. Lambda Expression
+              -> Lambda Expression is mainly used to implement functional interface.
+              -> Lambda Expression is an anonymous function.
+              -> It is a function without name and does not belongs to any class.
+              -> It reduces the line of java code. but the drawback is it make the code less readable.
+              -> Lambda expression implement the only abstract function and therefore implement functional interface.
+              3. Why are use Lambda expression?
+              Facilitates Functional programming.
+              ->To provided the implementation of the java 8 functional Interface.
+              ->Reduce lines of code.
+              ->Passing behavious into method.
+              4. Write a java Lambda Expression to create Thread.
+              ->The Runnable interface is a functional interface so we can use Lambda Expression to implement Runnable functional interface.
+
+              Ex1.
+              @FunctionalInterface
+              public interface A {
+                  public void test();
+              }
+
+              public class A1 {
+                  public static void main(String[] args) {
+                      A a=()->{
+                          System.out.println(100);
+                          System.out.println(355);
+                      };
+                      a.test();
+                  }
+              }
+
+              Ex2:
+                 @FunctionalInterface
+              public interface B {
+                  public void test(int a,int b);
+              }
+              public class B1 {
+                  public static void main(String[] args) {
+                      B b1=(int a,int b)->{
+                          System.out.println(a);
+                          System.out.println(b);
+
+                      };
+                      b1.test(1,2);
+                  }
+              }
+
+              Ex3:
+              @FunctionalInterface
+              public interface C {
+                  public int multiple(int x,int b);
+              }
+              public class C1 {
+                  public static void main(String[] args) {
+                      C c=(a,b)->a*b;
+                      System.out.println(c.multiple(1,4));
+                  }
+              }
+
+              Ex4:
+              @FunctionalInterface
+              public interface D {
+                  public int add(int a, int b);
+              }
+
+              public class D1 {
+                  public static void main(String[] args) {
+                      D d1=(a,b)->a+b;
+                      System.out.println(d1.add(4,9));
+                  }
+              }
+
+              Ex5:
+              @FunctionalInterface
+              public interface E {
+                  public int add(int a,int b);
+              }
+              public class E1 {
+                  public static void main(String[] args) {
+                      E e1=(int a, int b)->a+b;
+                      System.out.println(e1.add(4,9));
+                  }
+              }
+
+              Ex6:
+              @FunctionalInterface
+              public interface Square {
+                  public int square(int x);
+              }
+              public class Square1 {
+                  public static void main(String[] args) {
+                      Square square=(int a)->a*a;
+                      System.out.println(square.square(4));}
+              }
+
+              Ex7:
+              class Test{
+                  main(){
+                      ArrayList<Integer>a=new ArrayList<Integer>();
+                      a.add(1);
+                       a.add(2);
+                       a.add(3);
+                       a.add(4);
+                       a.forEach((n)->syso(n));
+                       a.forEach((n)->{if(n%2==0)syso(n);});
+
+
+                  }
+              }
+
+
+    Here are some multiple-choice questions (MCQs) based on **lambda expressions** and the examples provided:
+
+---
+
+### **1. What is the main purpose of lambda expressions in Java?**
+a) To create anonymous classes.
+b) To define methods without using a functional interface.
+c) To implement functional interfaces and enable functional programming.
+d) To eliminate the use of inheritance.
+
+**Answer**: **c)** To implement functional interfaces and enable functional programming.
+
+---
+
+### **2. Which of the following is true about lambda expressions?**
+a) Lambda expressions can implement any interface with multiple methods.
+b) Lambda expressions are used to implement functional interfaces with a single abstract method.
+c) Lambda expressions are always used with classes.
+d) Lambda expressions cannot be used with collections.
+
+**Answer**: **b)** Lambda expressions are used to implement functional interfaces with a single abstract method.
+
+---
+
+### **3. What is the output of the following code?**
+```java
+@FunctionalInterface
+public interface A {
+    void test();
+}
+public class A1 {
+    public static void main(String[] args) {
+        A a = () -> {
+            System.out.println(100);
+            System.out.println(355);
+        };
+        a.test();
+    }
+}
+```
+a) Compilation error.
+b) Prints `100` and `355` on separate lines.
+c) Prints `100 355` on the same line.
+d) Runtime error.
+
+**Answer**: **b)** Prints `100` and `355` on separate lines.
+
+---
+
+### **4. Which of the following functional interfaces is correctly implemented?**
+
+a)
+```java
+@FunctionalInterface
+public interface D {
+    int add(int a, int b);
+}
+
+D d = (x, y) -> x + y;
+```
+
+b)
+```java
+@FunctionalInterface
+public interface D {
+    void print(String str);
+}
+
+D d = (str) -> return str;
+```
+
+c)
+```java
+@FunctionalInterface
+public interface D {
+    void print(String str);
+}
+
+D d = (str) -> { System.out.println(str); };
+```
+
+d)
+```java
+@FunctionalInterface
+public interface D {
+    int add();
+}
+
+D d = () -> System.out.println(5);
+```
+
+**Answer**: **a)** and **c)**.
+
+---
+
+### **5. What will the following code output?**
+```java
+@FunctionalInterface
+public interface C {
+    int multiple(int x, int y);
+}
+public class C1 {
+    public static void main(String[] args) {
+        C c = (a, b) -> a * b;
+        System.out.println(c.multiple(2, 3));
+    }
+}
+```
+a) 6
+b) 5
+c) Compilation error.
+d) Runtime error.
+
+**Answer**: **a)** 6.
+
+---
+
+### **6. Which of the following can be implemented using lambda expressions?**
+a) Runnable
+b) Comparable
+c) ActionListener
+d) All of the above
+
+**Answer**: **d)** All of the above.
+
+---
+
+### **7. What will the following code output?**
+```java
+import java.util.ArrayList;
+
+public class Test {
+    public static void main(String[] args) {
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+
+        list.forEach(n -> {
+            if (n % 2 == 0) System.out.println(n);
+        });
+    }
+}
+```
+a) 1 2 3 4
+b) 2 4
+c) Compilation error.
+d) Runtime error.
+
+**Answer**: **b)** 2 4.
+
+---
+
+### **8. How is a lambda expression represented in Java?**
+a) `->`
+b) `=>`
+c) `:`
+d) `@`
+
+**Answer**: **a)** `->`.
+
+---
+
+### **9. Which functional interface is used in the example to calculate the square of a number?**
+```java
+@FunctionalInterface
+public interface Square {
+    int square(int x);
+}
+public class Square1 {
+    public static void main(String[] args) {
+        Square square = (int a) -> a * a;
+        System.out.println(square.square(4));
+    }
+}
+```
+a) Runnable
+b) Consumer
+c) Square
+d) Supplier
+
+**Answer**: **c)** Square.
+
+---
+
+### **10. Which of the following statements about functional interfaces is true?**
+a) A functional interface can have more than one abstract method.
+b) A functional interface must have exactly one abstract method.
+c) A functional interface cannot have any default or static methods.
+d) A functional interface must be annotated with `@FunctionalInterface`.
+
+**Answer**: **b)** A functional interface must have exactly one abstract method.
+
+---
+        4. Default Keyword
+        ->using default keyword we can created complete mmethods inside an interface.
+        Note:A functional interface should consist exactly one incomplete method but can have any number of complete method in it.
+
+        Ex1;
+        @FunctionalInterface
+        public interface A {
+            public void test1(int x);
+            default void test2(){
+                System.out.println(2);
+            }
+            default void test3(){
+                System.out.println(3);
+            }
+        }
+
+
+        public class B implements A{
+            @Override
+            public void test1(int x) {
+                System.out.println(x);
+            }
+
+
+
+            public static void main(String[] args) {
+                B b1=new B();
+                b1.test1(1);
+                b1.test2();
+                b1.test3();
+            }
+        }
+
+        Ex2:
+        @FunctionInterface
+        public interface Test {
+            public void test1(int x);
+            default void test2(){
+                System.out.println(100);
+            }
+            default void test3(){
+                System.out.println(200);
+            }
+        }
+        public class Main {
+            public static void main(String[] args) {
+                Test test=(int x)->{
+                    System.out.println(x);
+                };
+                test.test1(1);
+                test.test2();
+                test.test3();
+            }
+        }
+
+        ->In an Interface  we can add main method.
+        public interface A{
+            int x=10;
+            main(){
+                sout(A.x)
+            }
+        }
+        ->We can develop complete static method in an interface.
+        public interface A{
+            int x=10;
+            main(){
+                sout(A.x);
+                A.test();
+            }
+            public static void test(){
+                sout(100);
+            }
+        }
+
+Here are some multiple-choice questions (MCQs) based on **default and static methods in interfaces**:
+
+---
+
+### **1. What is the purpose of the `default` keyword in an interface?**
+a) To define abstract methods in an interface.
+b) To allow methods in an interface to have a default implementation.
+c) To override methods in a subclass.
+d) To ensure backward compatibility for interfaces.
+
+**Answer**:
+**b)** To allow methods in an interface to have a default implementation.
+
+---
+
+### **2. Which of the following is true for functional interfaces?**
+a) A functional interface can have multiple abstract methods.
+b) A functional interface can have any number of `default` methods.
+c) A functional interface cannot have static methods.
+d) A functional interface cannot have any methods other than abstract ones.
+
+**Answer**:
+**b)** A functional interface can have any number of `default` methods.
+
+---
+
+### **3. What is the output of the following code?**
+```java
+@FunctionalInterface
+public interface A {
+    public void test1(int x);
+    default void test2() {
+        System.out.println("Default Method 2");
+    }
+    default void test3() {
+        System.out.println("Default Method 3");
+    }
+}
+
+public class B implements A {
+    @Override
+    public void test1(int x) {
+        System.out.println(x);
+    }
+
+    public static void main(String[] args) {
+        B b1 = new B();
+        b1.test1(5);
+        b1.test2();
+        b1.test3();
+    }
+}
+```
+a) Compilation error.
+b) 5, Default Method 2, Default Method 3 (on separate lines).
+c) 5, Default Method 2.
+d) Runtime error.
+
+**Answer**:
+**b)** 5, Default Method 2, Default Method 3 (on separate lines).
+
+---
+
+### **4. What happens when a class implements an interface with a `default` method?**
+a) The class must override the `default` method.
+b) The class can optionally override the `default` method.
+c) The class cannot override the `default` method.
+d) The `default` method becomes private in the class.
+
+**Answer**:
+**b)** The class can optionally override the `default` method.
+
+---
+
+### **5. Can a `default` method in an interface access instance variables of implementing classes?**
+a) Yes, it can access them directly.
+b) No, it cannot access them directly.
+c) Only if the class explicitly passes them as arguments.
+d) Yes, but only static variables.
+
+**Answer**:
+**c)** Only if the class explicitly passes them as arguments.
+
+---
+
+### **6. What is the output of the following code?**
+```java
+@FunctionalInterface
+public interface Test {
+    public void test1(int x);
+    default void test2() {
+        System.out.println(100);
+    }
+    default void test3() {
+        System.out.println(200);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Test test = (int x) -> {
+            System.out.println(x);
+        };
+        test.test1(1);
+        test.test2();
+        test.test3();
+    }
+}
+```
+a) Compilation error.
+b) 1, 100, 200 (on separate lines).
+c) 1, 200.
+d) Runtime error.
+
+**Answer**:
+**b)** 1, 100, 200 (on separate lines).
+
+---
+
+### **7. Can an interface have a `static` method in Java?**
+a) Yes, and it can be accessed using the class that implements the interface.
+b) Yes, and it can be accessed using the interface name.
+c) No, static methods are not allowed in interfaces.
+d) Yes, but only in abstract classes.
+
+**Answer**:
+**b)** Yes, and it can be accessed using the interface name.
+
+---
+
+### **8. What is the output of the following code?**
+```java
+public interface A {
+    int x = 10;
+    static void main(String[] args) {
+        System.out.println(A.x);
+        A.test();
+    }
+    static void test() {
+        System.out.println(100);
+    }
+}
+```
+a) Compilation error.
+b) 10, 100 (on separate lines).
+c) 100.
+d) Runtime error.
+
+**Answer**:
+**b)** 10, 100 (on separate lines).
+
+---
+
+### **9. Can an interface have a `main` method in Java?**
+a) No, interfaces cannot have a `main` method.
+b) Yes, but the method must be abstract.
+c) Yes, and it can act as an entry point for the program.
+d) Only if the `main` method is static.
+
+**Answer**:
+**c)** Yes, and it can act as an entry point for the program.
+
+---
+
+### **10. Which of the following is **NOT** a feature of `default` methods in interfaces?**
+a) They allow you to add new methods to an existing interface without breaking the implementing classes.
+b) They must be overridden by implementing classes.
+c) They can have a complete implementation in the interface.
+d) They enable backward compatibility for interfaces.
+
+**Answer**:
+**b)** They must be overridden by implementing classes.
+
+---
+
+
+5. STREAM API
+
+-> It helps us manipulate collection.
+->A stream is a sequence of objects that supports various method.
+->stream() method used and stream is not a dstastructure.
+stream s=c.stream()-> present java .util.package
+
+Q. How to Stream working internally
+-> To filter out from the objects we do have a function name filter()
+-> To collect elements we will be using Collectors.toList() to collect all the required elements.
+
+They are listed and as follows:
+1. Sequence of Elements
+2. Source
+3. Aggregate Opteration
+4. Pipelining
+5. Internal iteration
+
+1. INTERMEDIATE OPERATION
+a. filter()
+filtering the data and always return boolean value
+ex: x.stream().filter().collect(Collectors.toList());
+b. map()
+-> Transform the object values.
+-> The map operation allows us to apply a function that take in parameter of one type and return some this else.
+
+
+   package com.crudDocker.java8;
+
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class StreamAPi {
+
+    public static void main(String[] args) {
+        List<Integer>num =Arrays.asList(1,2,3,4,5,6,7,8);
+        List<Integer>num1 =Arrays.asList(3,5,7,8,4,6,4,1);
+        List<String> startWith = Arrays.asList("1122", "2222", "11112", "444444");
+        List<Integer> remDuplicate = Arrays.asList(1, 2, 1, 3, 1, 4, 2, 4);
+        // even number 2,4,6,8
+        //num%2==0
+        //stream(): convert collection into stream
+
+//        Stream<Integer> stream = num.stream();
+//        System.out.println(stream);
+        // // collect(): Collects the elements into a another data structure.
+        //        // 1. filter():filter the elements based on a predicate.
+        List<Integer>evenNumber=num.stream().filter(nums->nums%2==0).collect(Collectors.toList());
+        System.out.println("Even Number:"+evenNumber);
+
+        //2.odd number
+        List<Integer>oddNumber=num.stream().filter(nums->nums%2!=0).collect(Collectors.toList());
+        System.out.println("Odd Number:"+oddNumber);
+
+        //3.sum of even number
+        // reduce():Terminal Operation
+        //Used to perform a reduction on the elements of a stream using an associative accumulation function and returning an optional with the reduced value.
+
+        Integer sum = num.stream().filter(nums -> nums % 2 == 0).reduce(0, (a, b) -> a + b);
+        System.out.println(sum);
+
+        //4.
+
+        Map<Boolean, List<Integer>> map = num.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0));
+        System.out.println("EVEN NUMBER:"+map.get(true));
+        System.out.println("ODD NUMBER:"+map.get(false));
+
+        // 5. map : Transforms each elements into another form
+        List<Integer> list = num.stream().filter(x -> x % 2 == 0).map(x -> x * x).collect(Collectors.toList());
+        System.out.println("Square even Number::"+list);
+
+        // 6. startWith
+        List<String> list1 = startWith.stream().filter(x -> x.startsWith("1")).collect(Collectors.toList());
+        System.out.println("StartWith:"+list1);
+
+        // 7. Remove Duplicate
+        List<Integer> removeDuplicate = remDuplicate.stream().distinct().collect(Collectors.toList());
+        System.out.println("Remove Duplicate::"+removeDuplicate);
+
+        //  8. mapToInt
+        // sum all number in list
+        System.out.println("Sum All Numbers::" + num.stream().mapToInt(Integer::intValue).sum());
+
+        //  9. sort the number acending or descending
+        List<Integer> sortAccending = num1.stream().sorted().collect(Collectors.toList());
+        System.out.println("SORT ELEMENTS ACCENDING ORDER"+sortAccending);
+
+        // 10. sort number descending order
+        List<Integer> descendingOrder = num1.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        System.out.println("DescendingOrder:"+descendingOrder);
+
+        // 11. greater than 4 and then find their average
+        OptionalDouble average = num1.stream().filter(x -> x > 4).mapToInt(x -> x).average();
+        System.out.println("AVERAGE:"+average);
+
+        //  12. flatMap(): flatten the lists into a single list
+        List<List<Integer>> lists = Arrays.asList(Arrays.asList(1, 2, 3),Arrays.asList(4, 3, 1),Arrays.asList(5, 7, 6));
+
+        //13.
+        List<Integer> singleList = lists.stream().flatMap(List::stream).collect(Collectors.toList());
+        System.out.println("Single List::"+singleList);
+
+        //14.  merge and remove duplicate
+        List<Integer> merge = lists.stream().flatMap(List::stream).distinct().collect(Collectors.toList());
+        System.out.println("Merge List::"+merge);
+
+        // 14.Find the second-highest number
+        Optional<Integer> secondHighestNumber = num.stream().distinct().sorted(Comparator.reverseOrder()).skip(1).findFirst();
+        System.out.println("Second Highest Number::"+secondHighestNumber);
+
+        //15. Maximum Value in a List
+        OptionalInt maxNumber = num.stream().mapToInt(x -> x).max();
+        System.out.println("Max Number:"+maxNumber);
+        OptionalInt minNumber = num.stream().mapToInt(x -> x).min();
+
+        //16. Average of Even Numbers
+        OptionalDouble avgOfEvenNumber = num.stream().filter(x -> x % 2 == 0).mapToInt(x -> x).average();
+        System.out.println("Avg Of even number"+avgOfEvenNumber);
+
+        //17. Count Numbers Divisible by 3
+        long count = num.stream().mapToInt(x -> x).filter(x -> x % 3 == 0).count();
+        System.out.println("Count Numbers Divisible by 3:"+count);
+
+        //18. Convert a List of Numbers to Their ASCII Characters
+
+        List<Integer> assValue = Arrays.asList(67, 67, 68, 98, 97);
+        assValue.stream().mapToInt(x->x).mapToObj(c->(char)c).forEach(c->System.out.println("Characters::"+c));
+
+        //20.Convert String Lengths to an IntStream
+        List<String> words = Arrays.asList("apple", "banana", "kiwi", "cherry");
+        words.stream().mapToInt(String::length).forEach(length->System.out.println("Length:"+length));
+
+        //21.Find the longest string using reduce
+        Optional<String> longestString = words.stream().reduce((x, y) -> x.length() > y.length() ? x : y);
+        System.out.println("Longest String ::"+longestString);
+        //22. uppercase
+        List<String> upperCase = words.stream().map(String::toUpperCase).collect(Collectors.toList());
+        System.out.println("UpperCase::"+upperCase);
+
+        //23. Convert a stream of strings to a list of integers representing their lengths
+        List<Integer> x2 = words.stream().map(String::length).collect(Collectors.toList());
+        System.out.println(x2);
+
+        //24. Split the string into individual characters
+        String input="aavdaaavdsswfsasa";
+        String[] output = input.split("");
+        System.out.println("OUTPUT::"+Arrays.toString(output));
+
+        //25. Count occurrences of each character
+        Map<String, Long> countOccurence = Arrays.stream(input.split("")).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        System.out.println("Count occurrences of each character:::"+countOccurence);
+
+        //26.Find duplicate characters with occurrences > 1
+        List<String> duplicateChar = Arrays.stream(input.split("")).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream()
+                .filter(entry -> entry.getValue() > 1)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+        System.out.println("Find duplicate characters with occurrences"+duplicateChar);
+
+        //27.  Find unique elements
+
+        List<String> unique = Arrays.stream(input.split("")).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream()
+                .filter(entry -> entry.getValue() == 1)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+        System.out.println("Find unique elements"+unique);
+
+        //28.  Find the first non-repeating element
+
+        // Step 1: Convert input string into a stream of characters
+        Optional<String> firstNonRepeating = Arrays.stream(input.split("")) // Split string into individual characters
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting())) // Count occurrences of each character
+                .entrySet().stream() // Convert map to a stream of entries
+                .filter(entry -> entry.getValue() == 1) // Filter entries where the count is 1 (non-repeating)
+                .map(Map.Entry::getKey) // Extract the character (key)
+                .findFirst(); // Find the first non-repeating character
+
+        System.out.println("Find the first non-repeating element::"+firstNonRepeating);
+    }
+
+}
+Here are multiple-choice questions (MCQs) based on the `StreamAPi` Java class provided:
+
+### **MCQs on Stream API in Java**
+
+---
+
+#### **1. Which Stream API method is used to filter elements based on a condition?**
+- A) `map()`
+- B) `filter()`
+- C) `collect()`
+- D) `reduce()`
+
+**Answer:** B) `filter()`
+
+---
+
+#### **2. What does the `distinct()` method do in a Stream?**
+- A) Filters elements based on a condition
+- B) Removes duplicate elements
+- C) Sorts the elements
+- D) Finds the maximum element
+
+**Answer:** B) Removes duplicate elements
+
+---
+
+#### **3. How can you calculate the sum of even numbers in a list using the Stream API?**
+- A) Use `filter()` and `reduce()`
+- B) Use `map()` and `reduce()`
+- C) Use `collect()` only
+- D) Use `forEach()`
+
+**Answer:** A) Use `filter()` and `reduce()`
+
+---
+
+#### **4. Which method is used to transform each element in a stream to another form?**
+- A) `filter()`
+- B) `map()`
+- C) `flatMap()`
+- D) `reduce()`
+
+**Answer:** B) `map()`
+
+---
+
+#### **5. What is the purpose of the `flatMap()` method in Stream API?**
+- A) To reduce elements into a single result
+- B) To transform elements into a new form
+- C) To flatten nested lists into a single list
+- D) To sort elements in descending order
+
+**Answer:** C) To flatten nested lists into a single list
+
+---
+
+#### **6. How can you sort elements in descending order using Stream API?**
+- A) Use `sorted()`
+- B) Use `sorted(Comparator.naturalOrder())`
+- C) Use `sorted(Comparator.reverseOrder())`
+- D) Use `distinct()`
+
+**Answer:** C) Use `sorted(Comparator.reverseOrder())`
+
+---
+
+#### **7. What will `partitioningBy()` return when applied to a Stream?**
+- A) A list of filtered elements
+- B) A map grouping elements into two categories based on a predicate
+- C) A sorted list of elements
+- D) A list of unique elements
+
+**Answer:** B) A map grouping elements into two categories based on a predicate
+
+---
+
+#### **8. How can you find the second-highest number in a list using the Stream API?**
+- A) Use `filter()` and `max()`
+- B) Use `distinct()`, `sorted()`, and `skip()`
+- C) Use `reduce()`
+- D) Use `map()` and `min()`
+
+**Answer:** B) Use `distinct()`, `sorted()`, and `skip()`
+
+---
+
+#### **9. Which method is used to count the number of elements in a stream that meet a specific condition?**
+- A) `map()`
+- B) `reduce()`
+- C) `count()`
+- D) `filter()`
+
+**Answer:** C) `count()`
+
+---
+
+#### **10. What is the output of `mapToInt()` in a Stream?**
+- A) A stream of `Integer`
+- B) A stream of `String`
+- C) An `IntStream`
+- D) A `Collector`
+
+**Answer:** C) An `IntStream`
+
+---
+
+#### **11. Which Stream API method can be used to calculate the average of a filtered list?**
+- A) `average()`
+- B) `reduce()`
+- C) `map()`
+- D) `collect()`
+
+**Answer:** A) `average()`
+
+---
+
+#### **12. How can you find the first non-repeating character in a string using Stream API?**
+- A) Use `reduce()` and `filter()`
+- B) Use `groupingBy()` and `filter()`
+- C) Use `map()` and `sorted()`
+- D) Use `flatMap()` and `collect()`
+
+**Answer:** B) Use `groupingBy()` and `filter()`
+
+---
+
+#### **13. Which method transforms elements into uppercase in a stream of strings?**
+- A) `filter()`
+- B) `map(String::toUpperCase)`
+- C) `flatMap()`
+- D) `collect()`
+
+**Answer:** B) `map(String::toUpperCase)`
+
+---
+
+#### **14. Which method is suitable for merging multiple lists into one list?**
+- A) `filter()`
+- B) `reduce()`
+- C) `flatMap()`
+- D) `sorted()`
+
+**Answer:** C) `flatMap()`
+
+---
+
+#### **15. How can you find the maximum value in a list using Stream API?**
+- A) Use `reduce()` with `Math.max`
+- B) Use `max()` method
+- C) Use `mapToInt()` and `max()`
+- D) All of the above
+
+**Answer:** D) All of the above
+
+---
+
