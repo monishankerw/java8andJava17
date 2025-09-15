@@ -66,6 +66,9 @@ public class A {
         long countWithPrefix = strings.stream().filter(s -> s.startsWith("a")).count();
         System.out.println("Count of strings with prefix 'a': " + countWithPrefix);
 
+        List<String> startWith = Arrays.asList("1212", "2313", "1234", "4321", "1234");
+        long countWithPrefix1 = startWith.stream().filter(s -> s.startsWith("1")).count();
+        System.out.println("Count of strings with prefix '1': " + countWithPrefix1);
         // TODO: CONVERT LIST OF ELEMENTS TO UPPERCASE
         List<String> upperCaseStrings = strings.stream().map(String::toUpperCase).toList();
         System.out.println("Upper case strings: " + upperCaseStrings);
