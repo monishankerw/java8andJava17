@@ -11,6 +11,21 @@ public class A {
 
         List<Integer> list = Arrays.asList(1, 2, 4, 5, 3, 2, 1, 6, 5);
         list.stream().filter(i -> i % 2 == 0).forEach(System.out::println);
+        // reduce():Terminal Operation
+        //Used to perform a reduction on the elements of a stream using an associative accumulation function and returning an optional with the reduced value.
+        // TODO: SUM OF NUMBER
+        System.out.println(list.stream().reduce(0,(a,b)->a+b).toString());
+        // sum of even number
+        System.out.println("Sum of even numbers: " +
+                list.stream()
+                        .filter(x -> x % 2 == 0)
+                        .reduce(0, (a, b) -> a + b)
+        );
+        // Longest Words
+        List<String>str=Arrays.asList("apple", "banana", "cherry", "date", "elderberry");
+        String s1 = str.stream().reduce((x, y) -> x.length() > y.length() ? x : y).get();
+        System.out.println(s1);
+
 
         // TODO: MAX NUMBER
         list.stream().max(Integer::compare).ifPresent(max -> System.out.println("Max Number: " + max));
@@ -25,9 +40,13 @@ public class A {
         int sum = list.stream().mapToInt(Integer::intValue).sum();
         System.out.println("Sum: " + sum);
 
+
         // TODO: AVERAGE
         double average = list.stream().mapToInt(Integer::intValue).average().orElse(0);
         System.out.println("Average: " + average);
+        // 10. greater than 4 and then find their average
+        System.out.println("Print Average Greater than 4::" + list.stream().filter(x -> x > 4).mapToInt(x -> x).average());
+
         // TODO: THIRD LARGEST NUMBER
         list.stream().sorted((a, b) -> b - a).skip(2).findFirst().ifPresent(thirdLargest -> System.out.println("Third largest number: " + thirdLargest));
         // TODO: THIRD SMALLEST NUMBER
@@ -40,27 +59,52 @@ public class A {
         System.out.print("Distinct: ");
         list.stream().distinct().forEach(num -> System.out.print(num + " "));
         System.out.println();
+        // 9. Remove Duplicate in list
+        System.out.println("Remove Duplicate numbers in List::" + list.stream().distinct().collect(Collectors.toList()));
+
 
         // TODO: SORT
         System.out.print("Sorted Accending Order: ");
-        list.stream().sorted().forEach(num -> System.out.print(num + " "));
-        System.out.println();
-
+        List<Integer> num = Arrays.asList(2,4,1,3,6,7,5,9,8);
+        System.out.println("Orginal Number:"+num);
+        List<Integer> num1 = num.stream().sorted().collect(Collectors.toList());
+        System.out.println("Accending Order:"+num1);
         // TODO: SORT DESCENDING
         System.out.print("Sorted Descending Order: ");
-        list.stream().sorted((a, b) -> b - a).forEach(num -> System.out.print(num + " "));
-        System.out.println();
+//        decendingorder;
+        List<Integer>number=Arrays.asList(21,2,23,4,25,26,17,8);
 
+        List<Integer>num2=number.stream().sorted(Collections.reverseOrder()).collect(Collectors.toList());
+        System.out.println(num2);
         // TODO: LIMIT
         System.out.print("First 3 elements: ");
-        list.stream().limit(3).forEach(num -> System.out.print(num + " "));
+        list.stream().limit(3).forEach(num21 -> System.out.print(num21 + " "));
         System.out.println();
 
         // TODO: SKIP
         System.out.print("After skipping first 2 elements: ");
-        list.stream().skip(2).forEach(num -> System.out.print(num + " "));
+        list.stream().skip(2).forEach(num11 -> System.out.print(num11 + " "));
         System.out.println();
 
+        // TODO: FLATMAP
+        List<List<Integer>> lists = Arrays.asList(Arrays.asList(1, 2, 3), Arrays.asList(4, 3, 1), Arrays.asList(5, 7, 6));
+        // 7.flatMap(): flatten the lists into a single list
+        System.out.println("Print Single List::" + lists.stream().flatMap(List::stream).collect(Collectors.toList()));
+
+        // merge list and remove duplicate
+        System.out.println("Print Single List and Remove duplicate::" + lists.stream().flatMap(List::stream).distinct().collect(Collectors.toList()));
+
+        List<String> words = Arrays.asList("apple", "banana", "cherry", "app", "application");
+// 2. map : Transforms each elements into another form
+        // Print String in upper case
+        System.out.println("UPPERCASE WORDS::" + words.stream().map(String::toUpperCase).collect(Collectors.toList()));
+        // 5. grouping the stream using Stream API
+        System.out.println("group the Strings::" + words.stream().collect(Collectors.groupingBy(String::length)));
+
+        // 6. count the word greater than 3
+        System.out.println("Count Word Greater Than Three::" + words.stream().filter(x -> x.length() > 3).count());
+// 8. sort them in alphabetical order and collect the result
+        System.out.println("Alphabetical Order Sort::" + words.stream().sorted().collect(Collectors.toList()));
         // TODO: COUNTING STRINGS WITH SPECIFIC PREFIX
         List<String> strings = Arrays.asList("apple", "bAnana", "apricot", "cherry", "Blueberry");
         long countWithPrefix = strings.stream().filter(s -> s.startsWith("a")).count();
@@ -82,8 +126,8 @@ public class A {
         System.out.println("Duplicate elements: " + duplicates);
 
         // TODO: FIND FIRST NON-REPEATED CHARACTER IN A STRING
-        String str = "swiss";
-        Optional<Character> firstNonRepeated = str.chars()
+        String str1 = "swiss";
+        Optional<Character> firstNonRepeated = str1.chars()
                 .mapToObj(c -> (char) c)
                 .collect(Collectors.toMap(c -> c, c -> 1, Integer::sum))
                 .entrySet().stream()
@@ -273,5 +317,49 @@ public class A {
         private static Map<Character,Long> getFreqMap(String str1) {
             return str1.chars().mapToObj(c->(char)c).collect(Collectors.groupingBy(e->e,Collectors.counting()));
         }
+        // Count character occurrences in a string
+        String input = "hello world";
+        Map<Character, Long> characterCount = input.chars() // Convert the string to an IntStream of characters
+                .mapToObj(c -> (char) c) // Convert the IntStream to a Stream<Character>
+                .collect(Collectors.groupingBy( // Group by each character
+                        Function.identity(), // Use the character as the key
+                        Collectors.counting() // Count the occurrences
+                ));
+
+        List<String> words = Arrays.asList("apple", "banana", "cherry", "app", "application");
+        // Convert a stream of strings to a list of integers representing their lengths
+        List<Integer> x2 = words.stream().map(String::length).collect(Collectors.toList());
+
+        // Convert a stream of strings to a list of integers representing their lengths
+        List<Integer> x3 = words.stream().map(String::length).collect(Collectors.toList());
+
     }
+// TODO : Duplicate Elements in an Arrays
+    public static class DuplicateElements {
+        public static void main(String[] args) {
+            int[] arr = {1, 2, 3, 4, 5, 2, 3, 6, 7, 8, 9, 1};
+            //TODO: using java 8
+            Arrays.stream(arr).boxed().collect(Collectors.groupingBy(e->e,Collectors.counting())).
+                    entrySet().stream().filter(e->e.getValue()>1).forEach(e->System.out.println(e.getKey()));
+        }
+    }
+    //TODO : Duplicate Characters in a String
+    public static class DuplicateCharacters {
+        public static void main(String[] args) {
+            String str = "hello world";
+            //TODO: using java 8
+            str.chars().mapToObj(c->(char)c).collect(Collectors.groupingBy(e->e,Collectors.counting())).
+                    entrySet().stream().filter(e->e.getValue()>1).forEach(e->System.out.println(e.getKey()));
+        }
+    }
+    //TODO : Duplicate Words in a String
+    public static class DuplicateWords {
+        public static void main(String[] args) {
+            String str = "hello world java hello";
+            //TODO: using java 8
+            Arrays.stream(str.split(" ")).collect(Collectors.groupingBy(e->e,Collectors.counting())).
+                    entrySet().stream().filter(e->e.getValue()>1).forEach(e->System.out.println(e.getKey()));
+        }
+    }
+
 }
