@@ -204,6 +204,21 @@ public class A {
         return map;  // Return the frequency map
     }
 
+    // TODO: Count Occurences of Words
+    public static class CountOccurencesOfWords {
+        public static void main(String[] args) {
+            String str = "Java is fun and java is popular";
+            String[] words = str.split(" ");
+            Map<String, Long> wordCount = Arrays.stream(words)
+                    .collect(Collectors.groupingBy(
+                            Function.identity(),
+                            LinkedHashMap::new,  // preserve order
+                            Collectors.counting()
+                    ));
+            System.out.println("Word frequencies: " + wordCount);
+        }
+    }
+
     //TODO : First NoN-Repeat Number
     public static class FirstNonRepeatNumber {
         public static void main(String[] args) {
@@ -391,5 +406,22 @@ public class A {
             System.out.println("Merge: " + Arrays.toString(merge));
         }
     }
-
+    // TODO: Second Largest Elements
+    public static class SecondLargestElements {
+        public static void main(String[] args) {
+            int[] arr = {1, 2, 3, 4, 5};
+            int secondLargest = Arrays.stream(arr).sorted().skip(arr.length - 2).findFirst().orElse(-1);
+            System.out.println("Second largest: " + secondLargest);
+        }
+    }
+    // TODO: Find Largest Word
+    public static class FindLargestWord {
+        public static void main(String[] args) {
+            String str = "Java is fun and java is popular";
+            String[] words = str.split(" ");
+            Optional<String> largestWord = Arrays.stream(words)
+                    .max(Comparator.comparingInt(String::length));
+            System.out.println("Largest word: " + largestWord.orElse(null));
+        }
+    }
 }
