@@ -361,5 +361,35 @@ public class A {
                     entrySet().stream().filter(e->e.getValue()>1).forEach(e->System.out.println(e.getKey()));
         }
     }
+ // TODO: Intersecting Elements in Two Arrays & Common Elements in Two Arrays
+    public static class IntersectingElements {
+     public static void main(String[] args) {
+         int[] arr1 = {1, 2, 3, 4, 5};
+         int[] arr2 = {4, 5, 6, 7, 8};
+         Set<Integer> set1 = Arrays.stream(arr1).boxed().collect(Collectors.toSet());
+         int[] intersection=Arrays.stream(arr2).filter(set1::contains).distinct().toArray();
+         System.out.println("Intersection: "+Arrays.toString(intersection));
+     }
+ }
+ //TODO : Union of Two Arrays
+    public static class UnionOfTwoArrays {
+        public static void main(String[] args) {
+            int[] arr1 = {1, 2, 3, 4, 5};
+            int[] arr2 = {4, 5, 6, 7, 8};
+            Set<Integer> set1 = Arrays.stream(arr1).boxed().collect(Collectors.toSet());
+            int[] union = Arrays.stream(arr2).filter(set1::contains).distinct().toArray();
+            System.out.println("Union: " + Arrays.toString(union));
+        }
+    }
+    //TODO : Merge and Duplicate Elements
+    public static class MergeAndDuplicateElements {
+        public static void main(String[] args) {
+            int[] arr1 = {1, 2, 3, 4, 5};
+            int[] arr2 = {4, 5, 6, 7, 8};
+            Set<Integer> set1 = Arrays.stream(arr1).boxed().collect(Collectors.toSet());
+            int[] merge = Arrays.stream(arr2).filter(set1::contains).distinct().toArray();
+            System.out.println("Merge: " + Arrays.toString(merge));
+        }
+    }
 
 }
